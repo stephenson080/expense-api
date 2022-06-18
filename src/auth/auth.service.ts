@@ -27,7 +27,8 @@ export class AuthService {
 
         return {
             access_token: this.jwtTokenService.sign(payload, {
-                secret: 'SUPERBIGSECRET'
+                secret: 'SUPERBIGSECRET',
+                expiresIn: '3600s'
             }),
         };
     }
