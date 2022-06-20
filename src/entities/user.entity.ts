@@ -11,20 +11,20 @@ export class User {
     })
     user_id: string
 
-    @Column({nullable: false})
+    @Column({nullable: false, unique: true})
     username: string
 
     @Column({nullable: false})
     password: string
 
-    @Column({nullable: false})
+    @Column({nullable: false, unique: true})
     email: string
 
     @Column({type: 'boolean', default: true})
     isActive: boolean
 
-    @Column({ type: 'enum', default: Roles.USER, enum: Roles})
-    role: Roles
+    @Column({ type: 'character varying', default: Roles.USER, enum: Roles})
+    roles: Roles
 
     @OneToMany(() => ReportEntity, (report) => report.user)
     reports: ReportEntity[]

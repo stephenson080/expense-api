@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {ReportEntity} from './entities/report.entity';
 import { User } from './entities/user.entity';
@@ -29,7 +30,12 @@ import { UserModule } from './user/user.module';
     }),    
   ],
   controllers: [],
-  providers: []
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ClassSerializerInterceptor
+    }
+  ]
 })
 export class AppModule {
 }
